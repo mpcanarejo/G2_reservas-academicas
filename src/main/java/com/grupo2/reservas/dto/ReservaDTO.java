@@ -1,61 +1,43 @@
 package com.grupo2.reservas.dto;
 
 import java.time.LocalDate;
-
+import java.time.LocalTime;
 
 public class ReservaDTO {
 
-    private Integer idReserva;
-    private Integer idUsuario;
-    private Integer idEspacio;
+    private Long id;
+    private Long idUsuario;
+    private Long idEspacio;
     private LocalDate fechaReserva;
-    private String hora_inicio;
-    private String hora_fin;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
     private String estado;
+    private String motivo;
 
-    //constructor
-    public ReservaDTO(){
-
-    }
-    //constructor con parmetso en la base de datos
-    public ReservaDTO(Integer idReserva, Integer idUsuario, Integer idHorario,
-        Integer idEspacio, LocalDate fechaReserva, String hora_inicio, String hora_fin,
-        String estado){
-
-        
-        //
-        this.idReserva = idReserva;
-        this.idUsuario = idUsuario;
-        this.idEspacio = idEspacio; 
-        this.fechaReserva = fechaReserva;
-        this.hora_inicio = hora_inicio;
-        this.hora_fin = hora_fin;   
-        this.estado = estado;
-        }
-
-        //get y setters
-
-    public Integer getIdReserva() {
-        return idReserva;
+    public ReservaDTO() {
     }
 
-    public void setIdReserva(Integer idReserva) {
-        this.idReserva = idReserva;
+    public Long getId() {
+        return id;
     }
 
-    public Integer getIdUsuario() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public Integer getIdEspacio() {
+    public Long getIdEspacio() {
         return idEspacio;
     }
 
-    public void setIdEspacio(int idEspacio) {
+    public void setIdEspacio(Long idEspacio) {
         this.idEspacio = idEspacio;
     }
 
@@ -67,20 +49,20 @@ public class ReservaDTO {
         this.fechaReserva = fechaReserva;
     }
 
-    public String getHora_inicio() {
-        return hora_inicio;
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setHora_inicio(String hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
-    public String getHora_fin() {
-        return hora_fin;
+    public LocalTime getHoraFin() {
+        return horaFin;
     }
 
-    public void setHora_fin(String hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setHoraFin(LocalTime horaFin) {
+        this.horaFin = horaFin;
     }
 
     public String getEstado() {
@@ -91,7 +73,11 @@ public class ReservaDTO {
         this.estado = estado;
     }
 
-    
-    
-}
+    public String getMotivo() {
+        return motivo;
+    }
 
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+}
