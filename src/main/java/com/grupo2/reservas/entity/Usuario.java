@@ -3,7 +3,7 @@ package com.grupo2.reservas.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -16,7 +16,7 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     private String correo;
 
-    @Column(length = 30)
+    @Column(nullable = false, length = 30)
     private String rol;
 
     public Usuario() {
