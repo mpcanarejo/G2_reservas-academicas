@@ -52,8 +52,7 @@ public class EspacioService {
 
     @Transactional
     public EspacioDTO crear(EspacioDTO dto) {
-        // Regla: el nombre de un espacio no puede repetirse
-        if (espacioRepository.existsByNombreIgnoreCase(dto.getNombre())) {
+        if (espacioRepository.existsByNombreIgnoreCase(dto.getNombre().trim())) {
             throw new DatosInvalidosException("Ya existe un espacio con el nombre: " + dto.getNombre());
         }
         Espacio espacio = new Espacio();
@@ -65,7 +64,7 @@ public class EspacioService {
     @Transactional
     public EspacioDTO actualizar(Long id, EspacioDTO dto) {
         Espacio espacio = buscar(id);
-        if (espacioRepository.existsByNombreIgnoreCaseAndIdNot(dto.getNombre(), id)) {
+        if (espacioRepository.existsByNombreIgnoreCaseAndIdNot(dto.getNombre().trim(), id)) {
             throw new DatosInvalidosException("Ya existe otro espacio con el nombre: " + dto.getNombre());
         }
         copiar(dto, espacio);
@@ -78,17 +77,19 @@ public class EspacioService {
     @Transactional
     public void eliminar(Long id) {
         Espacio espacio = buscar(id);
+        if (espacioRepository.contarHorarios(id) > 0 || espacioRepository.contarReservas(id) > 0) {
+            throw new ReservaConflictivaException(
+                    "No se puede eliminar el espacio " + id + " porque tiene horarios o reservas asociados");
+        }
         try {
             espacioRepository.delete(espacio);
             espacioRepository.flush();
         } catch (DataIntegrityViolationException e) {
-            // Regla: no se elimina un espacio que tiene horarios o reservas asociados
             throw new ReservaConflictivaException(
                     "No se puede eliminar el espacio " + id + " porque tiene horarios o reservas asociados");
         }
     }
 
-    // ---------- métodos auxiliares ----------
 
     private Espacio buscar(Long id) {
         return espacioRepository.findById(id)

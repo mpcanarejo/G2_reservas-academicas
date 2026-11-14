@@ -1,6 +1,7 @@
 package com.grupo2.reservas.dto;
 
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -21,6 +22,7 @@ public class EspacioDTO {
 
     @NotNull(message = "La capacidad es obligatoria")
     @Min(value = 1, message = "La capacidad debe ser mayor que cero")
+    @Max(value = 99999, message = "La capacidad no puede superar 99999")
     private Integer capacidad;
 
     @Size(max = 100, message = "La ubicación no puede superar 100 caracteres")

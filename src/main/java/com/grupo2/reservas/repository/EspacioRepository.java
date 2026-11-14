@@ -2,6 +2,8 @@ package com.grupo2.reservas.repository;
 
 import com.grupo2.reservas.entity.Espacio;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +20,9 @@ public interface EspacioRepository extends JpaRepository<Espacio, Long> {
     boolean existsByNombreIgnoreCase(String nombre);
 
     boolean existsByNombreIgnoreCaseAndIdNot(String nombre, Long id);
+    @Query(value = "SELECT COUNT(*) FROM horario WHERE espacio_id = :id", nativeQuery = true)
+    long contarHorarios(@Param("id") Long id);
+
+    @Query(value = "SELECT COUNT(*) FROM reserva WHERE espacio_id = :id", nativeQuery = true)
+    long contarReservas(@Param("id") Long id);
 }
