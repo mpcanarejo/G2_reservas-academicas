@@ -8,18 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ESPACIO")
+@Table(name = "espacio")
 public class Espacio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ESPACIO")
     private Long id;
 
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "TIPO", nullable = false, length = 30)
+    @Column(name = "TIPO", nullable = false, length = 50)
     private String tipo;
 
     @Column(name = "CAPACIDAD", nullable = false)
