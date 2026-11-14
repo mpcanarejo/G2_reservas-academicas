@@ -12,6 +12,9 @@ CREATE TABLE espacio (
     nombre     VARCHAR2(100) NOT NULL,
     tipo       VARCHAR2(50)  NOT NULL,
     capacidad  NUMBER(5)     NOT NULL,
+    ubicacion  VARCHAR2(100),
+    activo     NUMBER(1) DEFAULT 1 NOT NULL,
+    CONSTRAINT ck_espacio_activo CHECK (activo IN (0, 1)),
     CONSTRAINT pk_espacio PRIMARY KEY (id),
     CONSTRAINT uk_espacio_nombre UNIQUE (nombre),
     CONSTRAINT ck_espacio_capacidad CHECK (capacidad > 0)
