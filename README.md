@@ -61,6 +61,5 @@ reservas-academicas/
 ├-- src/main/resources/application.properties
 ├-- src/test/java/                        
 ├-- database/
-│   ├-- schema.sql                       
-│   └-- datos_prueba.sql                  
+│   ├-- schema.sql                                        
 └-- .github/workflows/ci.yml  
